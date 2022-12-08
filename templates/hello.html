@@ -1,0 +1,59 @@
+<body>
+
+
+ <p>
+  {% if name %}
+ Привет,
+ {% if gender == "m" %}
+ студент
+ {% elif gender == "w" %}
+ студентка
+ {% endif %}
+ {{name}}!
+  {% else %}
+  imya plz
+  {% endif %}
+ </p>
+
+<p>
+ Ваша образовательная программа: {{program}}.
+ </p>
+
+<p>
+
+{% if len(subjects_select)==0 %}
+{{' Вы не выбрали дисциплины! '}}
+{% else %}
+ Вы изучаете дисциплины:
+ {% for sub in subjects_select %}
+ {% if sub == subjects_select[-1] %}
+ <a href={{ url_for('subject', sub=sub) }}> {{sub}}</a>.
+ {% else %}
+ <a href={{ url_for('subject', sub=sub) }}> {{sub}}</a>,
+ {% endif %}
+ {% endfor %}
+ {% endif %}
+
+</p>
+
+<p>
+{% if len(olympiad_select)==0 %}
+{{' Вы нигде не участвовали! '}}
+{% else %}
+ Вы участвовали в соревнованиях:
+ {% for sub in olympiad_select %}
+ {% if sub == olympiad_select[-1] %}
+ <a href={{ url_for('olympiad', sub=sub) }}> {{sub}}</a>.
+ {% else %}
+ <a href={{ url_for('olympiad', sub=sub) }}> {{sub}}</a>,
+    {% endif %}
+ {% endfor %}
+{% endif %}
+</p>
+
+ <p><input name=action onclick="history.back()"
+ type=submit value="Вернуться"/>
+
+
+
+</body>
